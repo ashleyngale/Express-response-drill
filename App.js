@@ -1,10 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
-
-const app = express();
+  const app = express();
 
 app.use(morgan('common')); // let's see what 'common' format looks like
-const books = require('./books-data.js');
+const game = require('./playstore.js');
 
     app.get('/apps', (req, res) => {
         const { search = "", sort } = req.query;
@@ -18,7 +17,7 @@ const books = require('./books-data.js');
         }
       
         let results = apps
-              .filter(book =>
+              .filter(game =>
                   apps
                     .title
                     .toLowerCase()
@@ -35,6 +34,4 @@ const books = require('./books-data.js');
           .json(results);
       });
 
-app.listen(8000, () => {
-  console.log('Server started on PORT 8000');
-});
+      module.exports = app;
